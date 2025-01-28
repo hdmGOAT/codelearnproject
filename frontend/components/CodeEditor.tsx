@@ -1,7 +1,9 @@
 "use client";
 
-import ReactCodeMirror from "@uiw/react-codemirror";
+import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror";
+import { basicSetup } from "codemirror";
 import React from "react";
+import { abcdef } from "@uiw/codemirror-themes-all";
 
 const CodeEditor = () => {
   return (
@@ -12,7 +14,10 @@ const CodeEditor = () => {
         overflowWrap: "break-word",
       }}
     >
-      <ReactCodeMirror />
+      <ReactCodeMirror
+        theme={abcdef}
+        extensions={[basicSetup, EditorView.lineWrapping]}
+      />
     </div>
   );
 };
