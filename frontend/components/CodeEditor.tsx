@@ -3,7 +3,7 @@
 import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { basicSetup } from "codemirror";
 import React from "react";
-import { abcdef } from "@uiw/codemirror-themes-all";
+import { vscodeDark } from "@uiw/codemirror-themes-all";
 
 const CodeEditor = () => {
   return (
@@ -15,7 +15,7 @@ const CodeEditor = () => {
       }}
     >
       <ReactCodeMirror
-        theme={abcdef}
+        theme={vscodeDark}
         extensions={[basicSetup, EditorView.lineWrapping]}
       />
     </div>
