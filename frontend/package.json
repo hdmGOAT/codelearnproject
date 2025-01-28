@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@uiw/react-codemirror": "^4.23.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.1",
