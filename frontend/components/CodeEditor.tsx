@@ -5,10 +5,17 @@ import React from "react";
 
 const CodeEditor = () => {
   return (
-    <div>
+    <div
+      className="w-full h-full break-words"
+      style={{
+        whiteSpace: "pre-wrap",
+        overflowWrap: "break-word",
+      }}
+    >
       <ReactCodeMirror />
     </div>
   );
 };
 
 export default CodeEditor;
+
