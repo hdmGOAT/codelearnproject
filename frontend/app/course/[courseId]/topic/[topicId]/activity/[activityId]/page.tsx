@@ -1,6 +1,5 @@
 import CodeEditor from "@/components/CodeEditor";
 import { Button } from "@/components/ui/button";
-import ReactCodeMirror from "@uiw/react-codemirror";
 import React from "react";
 
 const ActivityPage = () => {
@@ -14,13 +13,16 @@ const ActivityPage = () => {
           <code className="bg-zinc-700 text-white">print(hello World)</code>
         </div>
       </div>
-      <div className="flex flex-col flex-1">
-        <div className="code-container flex flex-col flex-1 overflow-hidden ">
-          <CodeEditor />
+      <div className="flex flex-1 flex-col">
+        <div className="flex flex-col flex-[1] ">
+          <div className="code-container flex flex-col flex-1 overflow-scroll ">
+            <CodeEditor />
+          </div>
+          <div className="flex">
+            <Button className="w-full">Run</Button>
+          </div>
         </div>
-        <div>
-          <Button className="w-full">Run</Button>
-        </div>
+        <div className="flex flex-[1] h-full">OUTPUT</div>
       </div>
     </div>
   );

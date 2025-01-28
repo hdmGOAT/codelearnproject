@@ -9,15 +9,11 @@ import { Button } from "./ui/button";
 
 const CodeEditor = () => {
   return (
-    <div>
-      <div className="w-full h-full">
-        <ReactCodeMirror
-          theme={vscodeDark}
-          extensions={[EditorView.lineWrapping, loadLanguage("python") || []]}
-          height="100vh"
-        />
-      </div>
-    </div>
+    <ReactCodeMirror
+      theme={vscodeDark}
+      extensions={[EditorView.lineWrapping, loadLanguage("python") || []]}
+      height="100vh"
+    />
   );
 };
 
