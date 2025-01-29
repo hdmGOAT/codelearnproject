@@ -36,25 +36,7 @@ const ActivityPage = () => {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={50}>
-          <ResizablePanelGroup direction="vertical">
-            <ResizablePanel defaultSize={25}>
-              <div className="flex h-full flex-col">
-                <div className="h-full flex overflow-y-scroll">
-                  <CodeEditor />
-                </div>
-                <div className="flex flex-row">
-                  <Button className="flex flex-[1]"> Run </Button>{" "}
-                  <Button className="flex flex-[2]">Submit</Button>
-                </div>
-              </div>
-            </ResizablePanel>
-            <ResizableHandle />
-            <ResizablePanel defaultSize={75}>
-              <div className="p-6">
-                <span className="font-semibold">Output..</span>
-              </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
+          <CodeEditor />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
