@@ -15,7 +15,7 @@ const CodeEditor = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [minHeight, setMinHeight] = useState(0);
   const [output, setOutput] = useState();
-  const [code, setCode] = useState("aaaa");
+  const [code, setCode] = useState('print("Hello World")');
 
   useEffect(() => {
     if (containerRef.current) {
@@ -34,6 +34,10 @@ const CodeEditor = () => {
     return () => resizeObserver.disconnect();
   }, []);
 
+  const onChange = React.useCallback((val: any) => {
+    setCode(val);
+  }, []);
+
   return (
     <ResizablePanelGroup direction="vertical">
       <ResizablePanel defaultSize={50}>
@@ -43,6 +47,7 @@ const CodeEditor = () => {
               <ReactCodeMirror
                 theme={vscodeDark}
                 value={code}
+                onChange={onChange}
                 extensions={[
                   EditorView.lineWrapping,
                   loadLanguage("python") || [],
