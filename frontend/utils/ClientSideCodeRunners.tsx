@@ -30,12 +30,12 @@ export const runPython = async (code: string) => {
         )
         .then(() => resolve(output.trim()))
         .catch((err: any) => {
-          console.error("❌ Skulpt Error:", err);
-          reject(`Error: ${err.toString()}`);
+          console.error("skulpt Error:", err);
+          resolve(`Error: ${err.toString()}`);
         });
     });
   } catch (err: any) {
-    console.error("❌ Trouble running code:", err);
+    console.error("Error running code:", err);
     return `Error: ${err.message}`;
   }
 };
