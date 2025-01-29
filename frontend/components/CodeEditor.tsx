@@ -15,7 +15,7 @@ import { runPython } from "@/utils/ClientSideCodeRunners";
 const CodeEditor = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [minHeight, setMinHeight] = useState(0);
-  const [output, setOutput] = useState();
+  const [output, setOutput] = useState<string>("");
   const [code, setCode] = useState('print("Hello World")');
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const CodeEditor = () => {
             <Button
               className="flex flex-[1]"
               onClick={async () => {
-                setOutput(await runPython(code));
+                setOutput(String(await runPython(code)));
               }}
             >
               Run
@@ -72,9 +72,11 @@ const CodeEditor = () => {
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={50}>
-        <div className="p-6 flex-col flex space-y-6">
+        <div className="p-6  h-full flex-col flex space-y-6">
           <span className="font-semibold">Output..</span>
-          <p>{output}</p>
+          <div className="p-3 bg-foreground text-white border-2 rounded-xl min-h-44 border-gray-800">
+            <pre className="text-wrap">{output}</pre>
+          </div>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
