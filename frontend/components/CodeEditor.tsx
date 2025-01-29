@@ -10,6 +10,7 @@ import {
   ResizableHandle,
   ResizablePanelGroup,
 } from "./ui/resizable";
+import { runPython } from "@/utils/ClientSideCodeRunners";
 
 const CodeEditor = () => {
   const containerRef = useRef<HTMLDivElement>(null);

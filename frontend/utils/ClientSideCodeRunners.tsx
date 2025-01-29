@@ -1,4 +1,4 @@
-const runPython = async (code: string) => {
+export const runPython = async (code: string) => {
   try {
     const pyodide = await import("pyodide").then((mod) => mod.loadPyodide());
 
