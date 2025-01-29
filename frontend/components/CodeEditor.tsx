@@ -15,7 +15,7 @@ const CodeEditor = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [minHeight, setMinHeight] = useState(0);
   const [output, setOutput] = useState();
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState("aaaa");
 
   useEffect(() => {
     if (containerRef.current) {
@@ -54,8 +54,8 @@ const CodeEditor = () => {
           <div className="flex flex-row">
             <Button
               className="flex flex-[1]"
-              onClick={async () => {
-                setOutput(await runPython(code));
+              onClick={() => {
+                console.log(code);
               }}
             >
               Run
