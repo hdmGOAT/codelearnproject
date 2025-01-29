@@ -1,21 +1,39 @@
 "use client";
 
-let pyodideInstance: any = null; // Cache Pyodide instance
+import * as Sk from "skulpt";
 
 export const runPython = async (code: string) => {
   try {
-    console.log("Python Code:", code);
+    return new Promise((resolve, reject) => {
+      let output = "";
 
-    // Load Pyodide only once
-    if (!pyodideInstance) {
-      const { loadPyodide } = await import("pyodide");
-      pyodideInstance = await loadPyodide();
-      console.log("✅ Pyodide Loaded!");
-    }
+      const outf = (text: string) => {
+        output += text + "\n";
+      };
 
-    // Run Python Code
-    const result = await pyodideInstance.runPython(code);
-    return result;
+      Sk.configure({
+        output: outf,
+        read: (x: string) => {
+          if (
+            Sk.builtinFiles === undefined ||
+            Sk.builtinFiles.files[x] === undefined
+          ) {
+            throw new Error("File not found: " + x);
+          }
+          return Sk.builtinFiles.files[x];
+        },
+      });
+
+      Sk.misceval
+        .asyncToPromise(() =>
+          Sk.importMainWithBody("<stdin>", false, code, true)
+        )
+        .then(() => resolve(output.trim()))
+        .catch((err: any) => {
+          console.error("❌ Skulpt Error:", err);
+          reject(`Error: ${err.toString()}`);
+        });
+    });
   } catch (err: any) {
     console.error("❌ Trouble running code:", err);
     return `Error: ${err.message}`;
