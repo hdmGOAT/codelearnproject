@@ -1,12 +1,8 @@
 from django.db import models
-
+from .models import Language
 # Create your models here.
 
-class Language(models.Model):
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
 class Course(models.Model):
     name = models.CharField(max_length=255)
