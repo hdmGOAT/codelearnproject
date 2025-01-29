@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # LMS Apps
-    'courses',    
+    'courses',
+    'languages',
+    'content',
+    'quizzes'
+        
     # Administration Apps
 ]
 
