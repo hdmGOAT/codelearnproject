@@ -27,13 +27,3 @@ class Module(models.Model):
 
     def __str__(self):
         return self.name
-    
-class Content(models.Model):
-    module = models.ForeignKey(Module, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    content_type = models.CharField(max_length=255)
-    video_url = models.URLField()
-    
-
-    def __str__(self):
-        return self.name
