@@ -14,6 +14,8 @@ import {
 const CodeEditor = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [minHeight, setMinHeight] = useState(0);
+  const [output, setOutput] = useState();
+  const [code, setCode] = useState("");
 
   useEffect(() => {
     if (containerRef.current) {
@@ -40,6 +42,7 @@ const CodeEditor = () => {
             <div ref={containerRef} style={{ width: "100%" }}>
               <ReactCodeMirror
                 theme={vscodeDark}
+                value={code}
                 extensions={[
                   EditorView.lineWrapping,
                   loadLanguage("python") || [],
@@ -49,15 +52,23 @@ const CodeEditor = () => {
             </div>
           </div>
           <div className="flex flex-row">
-            <Button className="flex flex-[1]"> Run </Button>{" "}
+            <Button
+              className="flex flex-[1]"
+              onClick={async () => {
+                setOutput(await runPython(code));
+              }}
+            >
+              Run
+            </Button>
             <Button className="flex flex-[2]">Submit</Button>
           </div>
         </div>
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={50}>
-        <div className="p-6">
+        <div className="p-6 flex-col flex space-y-6">
           <span className="font-semibold">Output..</span>
+          <p>{output}</p>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
