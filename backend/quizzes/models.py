@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Content
+from content.models import Content
 
 # Create your models here.
 
