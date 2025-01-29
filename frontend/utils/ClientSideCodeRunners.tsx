@@ -1,11 +1,13 @@
 export const runPython = async (code: string) => {
   try {
-    const pyodide = await import("pyodide").then((mod) => mod.loadPyodide());
+    const { loadPyodide } = await import("pyodide");
+
+    const pyodide = await loadPyodide();
 
     const result = await pyodide.runPython(code);
-
     return result;
-  } catch (err) {
-    console.error("Trouble running code: ", err);
+  } catch (err: any) {
+    console.error("❌ Trouble running code:", err);
+    return `Error: ${err.message}`;
   }
 };
