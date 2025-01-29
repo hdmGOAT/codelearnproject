@@ -59,8 +59,8 @@ const CodeEditor = () => {
           <div className="flex flex-row">
             <Button
               className="flex flex-[1]"
-              onClick={() => {
-                console.log(code);
+              onClick={async () => {
+                setOutput(await runPython(code));
               }}
             >
               Run
