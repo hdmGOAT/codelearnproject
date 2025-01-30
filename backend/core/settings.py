@@ -38,11 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Third Party Apps
+    'rest_framework',
+    'corsheaders',
+    
     # LMS Apps
     'courses',
     'languages',
     'content',
-    'quizzes'
+    'quizzes',
         
     # Administration Apps
 ]
