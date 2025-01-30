@@ -66,6 +66,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
+CORS_ALLOWED_ORIGINS = []
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
