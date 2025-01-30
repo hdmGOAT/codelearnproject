@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'content',
     'quizzes',
         
-    # Administration Apps
+    # System Apps
+    'users',
 ]
 
 MIDDLEWARE = [
