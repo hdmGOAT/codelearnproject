@@ -32,8 +32,10 @@ interface DynamicFormProps {
   isMultiStep?: boolean;
 }
 
+
 const DynamicForm = ({}: DynamicFormProps) => {
 
+  const form = useForm()
   return <div>
     <Form {...Form}>
       <form onSubmit={format}
