@@ -6,10 +6,19 @@ Reusable Form component that can support multipage, as well as get readyu for ap
 'use client';
 
 import React from "react";
-import { Form } from "./ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { useForm } from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "path";
+import { Input } from "./ui/input";
 
 interface Field {
   name: string;
@@ -33,7 +42,6 @@ interface DynamicFormProps {
   isMultiStep?: boolean;
 }
 
-
 const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
   const isMultiStep =
     Array.isArray(fields) && fields.every((f) => "title" in f);
@@ -53,7 +61,23 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField />
+          {fields.map((field) => (
+            <FormField
+              key={(field as Field).name}
+              control={form.control}
+              name={(field as Field).name}
+              render={() => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ))}
         </form>
       </Form>
     </div>

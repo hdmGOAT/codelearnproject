@@ -1,3 +1,5 @@
+"use client";
+
 import DynamicForm from "@/components/DynamicForm";
 import { Form, FormField } from "@/components/ui/form";
 import { placeholder } from "@uiw/react-codemirror";
