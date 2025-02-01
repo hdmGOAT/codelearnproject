@@ -20,6 +20,30 @@ const SignupPage = () => {
         },
       ],
     },
+    {
+      name: "gay",
+      label: "test",
+      type: "text" as "text",
+      placeholder: "test",
+      options: [
+        {
+          label: "test",
+          value: "test",
+        },
+      ],
+    },
+    {
+      name: "bruh",
+      label: "test",
+      type: "text" as "text",
+      placeholder: "test",
+      options: [
+        {
+          label: "test",
+          value: "test",
+        },
+      ],
+    },
   ];
 
   const SignupPageSchema = z.object({
