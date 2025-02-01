@@ -57,27 +57,31 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     ),
   });
 
+  const renderField = (field: Field) => {
+    return (
+      <FormField
+        key={(field as Field).name}
+        control={form.control}
+        name={(field as Field).name}
+        render={() => (
+          <FormItem>
+            <FormLabel></FormLabel>
+            <FormControl>
+              <Input />
+            </FormControl>
+
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    );
+  };
+
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          {fields.map((field) => (
-            <FormField
-              key={(field as Field).name}
-              control={form.control}
-              name={(field as Field).name}
-              render={() => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
+          {(fields as Field[]).map(renderField)}
         </form>
       </Form>
     </div>
