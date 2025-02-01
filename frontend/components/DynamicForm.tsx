@@ -20,15 +20,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "path";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
-import { Select } from "./ui/select";
 import {
+  Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@radix-ui/react-select";
+} from "./ui/select";
 
 export interface Field {
   name: string;
