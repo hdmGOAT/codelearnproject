@@ -34,23 +34,30 @@ interface DynamicFormProps {
 }
 
 
-const DynamicForm = ({schema, fields}: DynamicFormProps) => {
+const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
+  const isMultiStep =
+    Array.isArray(fields) && fields.every((f) => "title" in f);
 
-  const isMultiStep = Array.isArray(fields) && fields.every(f => "title" in f);
+  const form = useForm({
+    resolver: zodResolver(schema),
 
-const form = useForm({
-  resolver: zodResolver(schema),
-  defaultValues: Object.fromEntries(
-    (isMultiStep ? (fields as Step[]).flatMap(s => s.fields) : (fields as Field[]))
-      .map(f => [f.name, f.defaultValue || ""])
-  )
-});
+    defaultValues: Object.fromEntries(
+      (isMultiStep
+        ? (fields as Step[]).flatMap((s) => s.fields)
+        : (fields as Field[])
+      ).map((f) => [f.name, f.defaultValue || ""])
+    ),
+  });
 
-  return <div>
-    <Form {...form}>
-      <form onSubmit={form}
-    </Form>
-  </div>;
+  return (
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField />
+        </form>
+      </Form>
+    </div>
+  );
 };
 
 export default DynamicForm;
