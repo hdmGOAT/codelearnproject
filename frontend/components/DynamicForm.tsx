@@ -20,6 +20,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "path";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
+import { Select } from "./ui/select";
+import {
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@radix-ui/react-select";
 
 export interface Field {
   name: string;
@@ -80,6 +89,22 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                   checked={Boolean(formField.value)}
                   onCheckedChange={formField.onChange}
                 />
+              ) : field.type === "select" ? (
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a fruit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup className="">
+                      <SelectLabel>Fruits</SelectLabel>
+                      <SelectItem value="apple">Apple</SelectItem>
+                      <SelectItem value="banana">Banana</SelectItem>
+                      <SelectItem value="blueberry">Blueberry</SelectItem>
+                      <SelectItem value="grapes">Grapes</SelectItem>
+                      <SelectItem value="pineapple">Pineapple</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               ) : (
                 <Input
                   {...formField}
