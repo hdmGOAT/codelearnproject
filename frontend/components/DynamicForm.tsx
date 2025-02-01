@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "path";
 import { Input } from "./ui/input";
 
-interface Field {
+export interface Field {
   name: string;
   label: string;
   type: "text" | "email" | "password" | "select" | "checkbox" | "radio";
@@ -60,14 +60,14 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
   const renderField = (field: Field) => {
     return (
       <FormField
-        key={(field as Field).name}
+        key={field.name}
         control={form.control}
-        name={(field as Field).name}
+        name={field.name}
         render={() => (
           <FormItem>
-            <FormLabel></FormLabel>
+            <FormLabel>{field.label}</FormLabel>
             <FormControl>
-              <Input />
+              <Input placeholder={field.placeholder ? field.placeholder : ""} />
             </FormControl>
 
             <FormMessage />

@@ -1,18 +1,19 @@
 "use client";
 
-import DynamicForm from "@/components/DynamicForm";
+import DynamicForm, { Field } from "@/components/DynamicForm";
 import { Form, FormField } from "@/components/ui/form";
 import { placeholder } from "@uiw/react-codemirror";
 import React from "react";
 import * as z from "zod";
 
 const SignupPage = () => {
-  const fields = [
+  const fields: Field[] = [
     {
       name: "test",
       label: "test",
       type: "text" as "text",
       placeholder: "test",
+      defaultValue: "mwamawmamw hi",
       options: [
         {
           label: "test",
