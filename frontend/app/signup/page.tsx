@@ -24,7 +24,7 @@ const SignupPage = () => {
     {
       name: "gay",
       label: "test",
-      type: "select" as "select",
+      type: "radio",
       placeholder: "test",
       options: [
         {
