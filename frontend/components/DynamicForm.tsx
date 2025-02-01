@@ -29,7 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { RadioGroup } from "./ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { Label } from "./ui/label";
 
 export interface Field {
   name: string;
@@ -75,9 +76,12 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     ),
   });
 
-  const renderSelect = (field: Field) => {
+  const renderSelect = (field: Field, formField: any) => {
     return (
-      <Select>
+      <Select
+        onValueChange={formField.onChange}
+        defaultValue={formField.value as string}
+      >
         <SelectTrigger>
           <SelectValue placeholder={field.placeholder} />
         </SelectTrigger>
@@ -95,8 +99,20 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
-  const renderRadio = (field: Field) => {
-    return <RadioGroup></RadioGroup>;
+  const renderRadio = (field: Field, formField: any) => {
+    return (
+      <RadioGroup
+        onValueChange={formField.onChange}
+        defaultValue={formField.value as string}
+      >
+        {field.options?.map((op) => (
+          <div key={op.label} className="flex items-center space-x-2">
+            <RadioGroupItem id={op.label} value={op.value} />
+            <Label htmlFor={op.label}>{op.label}</Label>
+          </div>
+        ))}
+      </RadioGroup>
+    );
   };
 
   const renderField = (field: Field) => {
@@ -115,9 +131,9 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                   onCheckedChange={formField.onChange}
                 />
               ) : field.type === "select" ? (
-                renderSelect(field)
+                renderSelect(field, formField)
               ) : field.type === "radio" ? (
-                renderRadio(field)
+                renderRadio(field, formField)
               ) : (
                 <Input
                   {...formField}
