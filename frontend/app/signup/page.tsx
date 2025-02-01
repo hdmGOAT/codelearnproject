@@ -14,19 +14,21 @@ const SignupPage = () => {
       type: "text" as "text",
       placeholder: "test",
       defaultValue: "mwamawmamw hi",
+    },
+    {
+      name: "gay",
+      label: "test",
+      type: "select",
+      placeholder: "test",
       options: [
         {
           label: "test",
           value: "test",
         },
-      ],
-    },
-    {
-      name: "gay",
-      label: "test",
-      type: "radio",
-      placeholder: "test",
-      options: [
+        {
+          label: "test",
+          value: "test",
+        },
         {
           label: "test",
           value: "test",

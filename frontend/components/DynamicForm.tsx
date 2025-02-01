@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { RadioGroup } from "./ui/radio-group";
 
 export interface Field {
   name: string;
@@ -74,6 +75,30 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     ),
   });
 
+  const renderSelect = (field: Field) => {
+    return (
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder={field.placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>{field.label}</SelectLabel>
+            {field.options?.map((op, index) => (
+              <SelectItem key={index} value={op.value}>
+                {op.label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    );
+  };
+
+  const renderRadio = (field: Field) => {
+    return <RadioGroup></RadioGroup>;
+  };
+
   const renderField = (field: Field) => {
     return (
       <FormField
@@ -90,21 +115,9 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                   onCheckedChange={formField.onChange}
                 />
               ) : field.type === "select" ? (
-                <Select>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a fruit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup className="">
-                      <SelectLabel>Fruits</SelectLabel>
-                      <SelectItem value="apple">Apple</SelectItem>
-                      <SelectItem value="banana">Banana</SelectItem>
-                      <SelectItem value="blueberry">Blueberry</SelectItem>
-                      <SelectItem value="grapes">Grapes</SelectItem>
-                      <SelectItem value="pineapple">Pineapple</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+                renderSelect(field)
+              ) : field.type === "radio" ? (
+                renderRadio(field)
               ) : (
                 <Input
                   {...formField}
