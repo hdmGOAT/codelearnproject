@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "path";
 import { Input } from "./ui/input";
+import { Checkbox } from "./ui/checkbox";
 
 export interface Field {
   name: string;
@@ -67,15 +68,22 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
           <FormItem>
             <FormLabel>{field.label}</FormLabel>
             <FormControl>
-              <Input
-                {...formField}
-                value={
-                  typeof formField.value === "boolean"
-                    ? formField.value.toString()
-                    : formField.value
-                }
-                placeholder={field.placeholder ? field.placeholder : ""}
-              />
+              {field.type === "checkbox" ? (
+                <Checkbox
+                  checked={Boolean(formField.value)}
+                  onCheckedChange={formField.onChange}
+                />
+              ) : (
+                <Input
+                  {...formField}
+                  value={
+                    typeof formField.value === "boolean"
+                      ? ""
+                      : formField.value ?? ""
+                  }
+                  placeholder={field.placeholder || ""}
+                />
+              )}
             </FormControl>
 
             <FormMessage />
