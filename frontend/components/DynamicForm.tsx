@@ -63,11 +63,19 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
         key={field.name}
         control={form.control}
         name={field.name}
-        render={() => (
+        render={({ field: formField }) => (
           <FormItem>
             <FormLabel>{field.label}</FormLabel>
             <FormControl>
-              <Input placeholder={field.placeholder ? field.placeholder : ""} />
+              <Input
+                {...formField}
+                value={
+                  typeof formField.value === "boolean"
+                    ? formField.value.toString()
+                    : formField.value
+                }
+                placeholder={field.placeholder ? field.placeholder : ""}
+              />
             </FormControl>
 
             <FormMessage />
