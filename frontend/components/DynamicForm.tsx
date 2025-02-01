@@ -3,9 +3,12 @@ Reusable Form component that can support multipage, as well as get readyu for ap
 
 
 */
+'use client';
 
 import React from "react";
-import * as z from "zod";
+import { Form } from "./ui/form";
+import { useForm } from "react-hook-form";
+import { format } from "path";
 
 interface Field {
   name: string;
@@ -30,7 +33,12 @@ interface DynamicFormProps {
 }
 
 const DynamicForm = ({}: DynamicFormProps) => {
-  return <div>DynamicForm</div>;
+
+  return <div>
+    <Form {...Form}>
+      <form onSubmit={format}
+    </Form>
+  </div>;
 };
 
 export default DynamicForm;
