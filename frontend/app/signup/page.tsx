@@ -24,7 +24,7 @@ const SignupPage = () => {
     {
       name: "gay",
       label: "test",
-      type: "text" as "text",
+      type: "select" as "select",
       placeholder: "test",
       options: [
         {
@@ -36,7 +36,7 @@ const SignupPage = () => {
     {
       name: "bruh",
       label: "test",
-      type: "text" as "text",
+      type: "file" as "file",
       placeholder: "test",
       options: [
         {

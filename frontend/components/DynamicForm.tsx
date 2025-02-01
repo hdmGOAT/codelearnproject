@@ -24,7 +24,14 @@ import { Checkbox } from "./ui/checkbox";
 export interface Field {
   name: string;
   label: string;
-  type: "text" | "email" | "password" | "select" | "checkbox" | "radio";
+  type:
+    | "text"
+    | "email"
+    | "password"
+    | "select"
+    | "checkbox"
+    | "radio"
+    | "file";
   placeholder?: string;
   options?: { label: string; value: string }[];
   defaultValue?: string | boolean;
