@@ -81,6 +81,7 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                       ? ""
                       : formField.value ?? ""
                   }
+                  type={field.type}
                   placeholder={field.placeholder || ""}
                 />
               )}
