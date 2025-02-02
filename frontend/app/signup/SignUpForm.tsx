@@ -4,8 +4,11 @@ import React from "react";
 import { SignUpFields } from "./SignUpFields";
 import * as z from "zod";
 import { userRegister } from "@/lib/services/api/authService";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
+  const router = useRouter();
+
   const SignupPageSchema = z.object({
     username: z.string().min(3, "Username must be at least 3 characters"),
     email: z.string().email("Invalid email format"),
@@ -19,6 +22,7 @@ const SignUpForm = () => {
     try {
       console.log("Form Data:", data);
       userRegister(data);
+      router.push("/dashboard");
     } catch (error) {
       console.error("Submission error:", error);
     }

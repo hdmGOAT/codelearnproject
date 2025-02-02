@@ -84,7 +84,12 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = False  # Set to True in production
 SESSION_COOKIE_SECURE = False  # Set to True in production
 CSRF_COOKIE_HTTPONLY = False
-SESSION_COOKIE_HTTPONLY = False
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies' 
+
+SESSION_COOKIE_HTTPONLY = True
+
+SESSION_SAVE_EVERY_REQUEST = False
+
 CSRF_TRUSTED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=Csv())
 
 
