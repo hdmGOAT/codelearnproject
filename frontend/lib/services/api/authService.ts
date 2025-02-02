@@ -3,12 +3,29 @@ import apiClient from "./apiClient";
 import axios from "axios";
 
 
-export const userRegister = async (data: any) => {
+export const userRegister = async (formData: {
+  username: string;
+  email: string;
+  display_name: string;
+  password1: string;
+  password2: string;
+}) => {
   try {
-    const response = await apiClient.post("/auth/registration/", data);
+    const response = await apiClient.post("/auth/registration/", formData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("✅ Registration successful:", response.data);
     return response.data;
-  } catch (error) {
-    console.error("Error signing up: ", error);
+  } catch (error: any) {
+    console.error(
+      "❌ Registration failed:",
+      error.response?.data?.message || error
+    );
+
+    return { error: error.response?.data || "Unknown error" };
   }
 };
 
@@ -22,26 +39,34 @@ export const userLogin = async (data: any) => {
 };
 
 export const verifyToken = async (token: string) => {
+  if (!token) {
+    console.error("❌ No token provided for verification.");
+    return null;
+  }
+
   try {
     const response = await apiClient.post(
       "/auth/token/verify/",
-      {},
+      { token }, // ✅ Ensure correct JSON payload
       {
-        withCredentials: true,
+        withCredentials: true, // ✅ Sends cookies if needed
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
+
+    console.log("✅ Token verification successful:", response.data);
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     console.error(
-      "Token verification failed:",
-      (error as any).response?.data || error
+      "❌ Token verification failed:",
+      error.response?.data || error
     );
     return null;
   }
 };
+
 
 export const refreshToken = async () => {
   console.log("🔄 Refreshing access token...");

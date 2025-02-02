@@ -14,6 +14,12 @@ export const SignUpFields: Field[] = [
     placeholder: "Enter username",
   },
   {
+    name: "display_name",
+    label: "Give a Display Name",
+    type: "text",
+    placeholder: "what should we call you?",
+  },
+  {
     name: "password1",
     label: "Password",
     type: "password",

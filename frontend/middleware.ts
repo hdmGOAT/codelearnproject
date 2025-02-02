@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
   if (token) {
     try {
       try {
-        verifyToken(token);
+        await verifyToken(token);
       } catch (e) {
         console.error("Token verification error:", e);
         return NextResponse.redirect(new URL("/login", request.url));

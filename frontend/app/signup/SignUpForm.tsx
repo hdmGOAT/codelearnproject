@@ -16,17 +16,43 @@ const SignUpForm = () => {
     password2: z.string().min(6, "Password must be at least 6 characters"),
   });
 
-  const handleSubmit = async (data: any) => {
-    console.log("Submitting form...");
+const handleSubmit = async (data: any) => {
+  console.log("🚀 Submitting form...");
 
-    try {
-      console.log("Form Data:", data);
-      userRegister(data);
-      router.push("/dashboard");
-    } catch (error) {
-      console.error("Submission error:", error);
+  try {
+    console.log("📌 Form Data:", data);
+
+    const response = await userRegister(data); // ✅ Ensure this is awaited
+
+    if (!response || response.error) {
+      console.error(
+        "❌ Registration failed:",
+        response?.error || "Unknown error"
+      );
+
+      alert(
+        `⚠️ Registration failed: ${response?.error || "Please try again."}`
+      );
+      return; // 🚨 Prevent redirect if registration fails
     }
-  };
+
+    console.log("✅ Registration successful:", response);
+    router.push("/dashboard"); // ✅ Only redirect if registration is successful
+  } catch (error: any) {
+    console.error("❌ Submission error:", error);
+
+    // If API response contains error details
+    if (error.response) {
+      console.error("🔍 API Error Details:", error.response.data);
+      alert(
+        `⚠️ Error: ${error.response.data?.message || "Something went wrong!"}`
+      );
+    } else {
+      alert("⚠️ Network error. Please check your connection.");
+    }
+  }
+};
+
 
   return (
     <div className="w-full">
