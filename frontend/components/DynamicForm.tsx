@@ -79,7 +79,7 @@ interface RangeOptions {
   step: number;
 }
 
-interface Step {
+export interface Step {
   title: string;
   fields: Field[];
 }
@@ -252,11 +252,34 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
+  const [step, setStep] = React.useState(0); // Track current step
+
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          {(fields as Field[]).map(renderField)}
+          {isMultiStep ? (
+            <>
+              {(fields as Step[])[step].fields.map(renderField)}
+
+              <div className="flex justify-between mt-4">
+                {step > 0 && (
+                  <Button type="button" onClick={() => setStep(step - 1)}>
+                    Back
+                  </Button>
+                )}
+                {step < (fields as Step[]).length - 1 ? (
+                  <Button type="button" onClick={() => setStep(step + 1)}>
+                    Next
+                  </Button>
+                ) : (
+                  <Button type="submit">Submit</Button>
+                )}
+              </div>
+            </>
+          ) : (
+            (fields as Field[]).map(renderField)
+          )}
         </form>
       </Form>
     </div>
