@@ -37,52 +37,12 @@ import { Button } from "./ui/button";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import { Slider } from "./ui/slider";
-
-export interface Field {
-  name: string;
-  label: string;
-  type:
-    | "text"
-    | "email"
-    | "password"
-    | "number"
-    | "tel"
-    | "url"
-    | "search"
-    | "textarea"
-    | "select"
-    | "checkbox"
-    | "radio"
-    | "file" //
-    | "date"
-    | "datetime-local" //
-    | "month" //
-    | "week" //
-    | "time" //
-    | "range"
-    | "color" //
-    | "switch"
-    | "hidden";
-  placeholder?: string;
-  options?: SelectOptions[] | RangeOptions;
-  defaultValue?: string | boolean;
-}
-
-interface SelectOptions {
-  label: string;
-  value: string;
-}
-
-interface RangeOptions {
-  min: number;
-  max: number;
-  step: number;
-}
-
-export interface Step {
-  title: string;
-  fields: Field[];
-}
+import {
+  Field,
+  Step,
+  RangeOptions,
+  SelectOptions,
+} from "@/types/dynamicFormTypes";
 
 interface DynamicFormProps {
   fields: Field[] | Step[]; // Supports both single & multi-step forms
@@ -260,6 +220,9 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {isMultiStep ? (
             <>
+              <h2 className="text-xl font-semibold mb-4">
+                {(fields as Step[])[step].title}
+              </h2>
               {(fields as Step[])[step].fields.map(renderField)}
 
               <div className="flex justify-between mt-4">
