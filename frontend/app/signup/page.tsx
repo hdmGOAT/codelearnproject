@@ -43,7 +43,7 @@ const fields: Field[] = [
   {
     name: "checkboxInput",
     label: "Accept Terms",
-    type: "switch",
+    type: "range",
     defaultValue: false,
   },
   {

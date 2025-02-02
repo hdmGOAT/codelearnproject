@@ -17,7 +17,7 @@ import {
 } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "path";
+import { format } from "date-fns";
 import { Input } from "./ui/input";
 import { Checkbox } from "./ui/checkbox";
 import {
@@ -32,6 +32,10 @@ import {
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
 import { Switch } from "./ui/switch";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Button } from "./ui/button";
+import { CalendarIcon } from "lucide-react";
+import { Calendar } from "./ui/calendar";
 
 export interface Field {
   name: string;
@@ -49,7 +53,7 @@ export interface Field {
     | "checkbox"
     | "radio"
     | "file" //
-    | "date" //
+    | "date"
     | "datetime-local" //
     | "month" //
     | "week" //
@@ -143,7 +147,31 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
-  const renderDate = (field: Field, formField: any) => {};
+  const renderDate = (field: Field, formField: any) => {
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className="w-[240px] justify-start text-left font-normal"
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {formField.value
+              ? format(new Date(formField.value), "PPP")
+              : "Pick a date"}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={formField.value ? new Date(formField.value) : undefined}
+            onSelect={(date) => formField.onChange(date?.toISOString())} // ✅ Updates form state
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
+    );
+  };
 
   const renderField = (field: Field) => {
     return (
@@ -166,6 +194,8 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                 renderRadio(field, formField)
               ) : field.type === "switch" ? (
                 renderSwitch(field, formField)
+              ) : field.type === "date" ? (
+                renderDate(field, formField)
               ) : (
                 <Input
                   {...formField}
