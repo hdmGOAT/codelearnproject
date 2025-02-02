@@ -157,3 +157,9 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'jwt-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'jwt-refresh',
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'dj_rest_auth.authentication.JWTAuthentication',
+    ],
+}
