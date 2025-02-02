@@ -1,4 +1,3 @@
-import exp from "constants";
 import apiClient from "./apiClient";
 
 export const fetchUsers = async () => {

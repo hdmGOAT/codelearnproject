@@ -232,7 +232,15 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                   </Button>
                 )}
                 {step < (fields as Step[]).length - 1 ? (
-                  <Button type="button" onClick={() => setStep(step + 1)}>
+                  <Button
+                    type="button"
+                    onClick={async () => {
+                      const isValid = await form.trigger(
+                        (fields as Step[])[step].fields.map((f) => f.name) // Validate current step fields
+                      );
+                      if (isValid) setStep(step + 1); // Only go to the next step if valid
+                    }}
+                  >
                     Next
                   </Button>
                 ) : (
@@ -241,7 +249,10 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
               </div>
             </>
           ) : (
-            (fields as Field[]).map(renderField)
+            <div>
+              {(fields as Field[]).map(renderField)}
+              <Button type="submit">Submit</Button>
+            </div>
           )}
         </form>
       </Form>
