@@ -1,29 +1,31 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
+import { refreshToken, verifyToken } from "./lib/services/api/authService";
 
-const JWT_SECRET = process.env.DJANGO_SECRET_KEY;
-
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get("jwt-auth")?.value;
   const { pathname } = request.nextUrl;
 
   if (token) {
     try {
-      if (!JWT_SECRET) {
-        throw new Error("JWT_SECRET is not defined");
+      try {
+        verifyToken(token);
+      } catch (e) {
+        console.error("Token verification error:", e);
+        return NextResponse.redirect(new URL("/login", request.url));
       }
-      const decoded = jwt.verify(token, JWT_SECRET);
-      console.log("✅ Valid Token for User:", decoded);
 
       if (pathname === "/login" || pathname === "/signup") {
         return NextResponse.redirect(new URL("/dashboard", request.url));
       }
-
-      return NextResponse.next();
-    } catch (error) {
-      console.error("❌ Invalid Token:", error);
-      return NextResponse.redirect(new URL("/login", request.url));
+    } catch (e) {
+      try {
+        await refreshToken();
+      } catch (e) {
+        console.log("🔒 Invalid Token - Redirecting to /login");
+        return NextResponse.redirect(new URL("/login", request.url));
+      }
     }
   }
 

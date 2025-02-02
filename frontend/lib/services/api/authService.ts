@@ -1,5 +1,7 @@
+import { get } from "http";
 import apiClient from "./apiClient";
 import axios from "axios";
+import { getCookie } from "@/lib/utils/CookieUtils";
 
 export const userRegister = async (data: any) => {
   try {
@@ -19,7 +21,6 @@ export const userLogin = async (data: any) => {
   }
 };
 
-
 export const verifyToken = async (token: string) => {
   try {
     const response = await apiClient.post("/auth/token/verify/", { token });
@@ -34,15 +35,16 @@ export const verifyToken = async (token: string) => {
 };
 
 export const refreshToken = async () => {
+  console.log("🔄 Refreshing access token...");
+
   try {
     const response: { data: { access: string } } = await apiClient.post(
       "/auth/token/refresh/",
       {
-        refresh: localStorage.getItem("refresh_token"),
+        refresh: getCookie("jwt-refresh"),
       }
     );
 
-    localStorage.setItem("access_token", response.data.access);
     return response.data.access;
   } catch (error) {
     console.error(
