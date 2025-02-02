@@ -159,6 +159,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),  
+    'ROTATE_REFRESH_TOKENS': False,  
+    'BLACKLIST_AFTER_ROTATION': True,  
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 REST_AUTH = {
     'USE_JWT': True,
