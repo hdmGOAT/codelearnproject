@@ -39,10 +39,24 @@ export interface Field {
     | "text"
     | "email"
     | "password"
+    | "number"
+    | "tel"
+    | "url"
+    | "search"
+    | "textarea"
     | "select"
     | "checkbox"
     | "radio"
-    | "file";
+    | "file"
+    | "date"
+    | "datetime-local"
+    | "month"
+    | "week"
+    | "time"
+    | "range"
+    | "color"
+    | "switch"
+    | "hidden";
   placeholder?: string;
   options?: { label: string; value: string }[];
   defaultValue?: string | boolean;
