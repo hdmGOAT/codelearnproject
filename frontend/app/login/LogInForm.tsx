@@ -4,7 +4,8 @@ import DynamicForm from "@/components/DynamicForm";
 import React from "react";
 import * as z from "zod";
 import { LogInFields } from "./LogInFields";
-import { userLogin } from "@/lib/services/api/authService";
+import { refreshToken, userLogin } from "@/lib/services/api/authService";
+import { Button } from "@/components/ui/button";
 
 const LogInForm = () => {
   const handleSubmit = async (data: any) => {
@@ -23,11 +24,14 @@ const LogInForm = () => {
   });
 
   return (
-    <DynamicForm
-      fields={LogInFields}
-      schema={LogInPageSchema}
-      onSubmit={handleSubmit}
-    />
+    <div>
+      <DynamicForm
+        fields={LogInFields}
+        schema={LogInPageSchema}
+        onSubmit={handleSubmit}
+      />
+      <Button onClick={refreshToken}>REFRESH</Button>
+    </div>
   );
 };
 
