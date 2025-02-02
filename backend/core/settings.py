@@ -29,7 +29,11 @@ DEBUG = True
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 
+SITE_ID = 1 
+
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,6 +47,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'allauth',
+    'allauth.account',  
+    'allauth.socialaccount', 
+    'dj_rest_auth.registration', 
     'corsheaders',
     
     # LMS Apps
@@ -153,7 +161,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_AUTH = {
-    'USE_JWR': True,
+    'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'jwt-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'jwt-refresh',
 }
