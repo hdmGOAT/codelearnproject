@@ -101,6 +101,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 AUTH_USER_MODEL = "users.User"
 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_USERNAME_REQUIRED = False  
+
+
+REST_AUTH_REGISTER_VERIFICATION_ENABLED = False
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
