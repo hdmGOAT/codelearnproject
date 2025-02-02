@@ -38,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()  # Custom user manager
 
     USERNAME_FIELD = "email"  # Use email for authentication
-    REQUIRED_FIELDS = ["first_name", "last_name"]  # Fields required during registration
+    REQUIRED_FIELDS = ["display_name"]  # Fields required during registration
 
     def __str__(self):
         return self.email

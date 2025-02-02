@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a4x&j#tp2c+=4^_2wvas5ig2o5hqlw=oxf1wmmx*fs1@0ly^$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [config("ALLOWED_HOSTS", cast=Csv())]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 
 # Application definition
@@ -70,7 +70,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
-CORS_ALLOWED_ORIGINS = [config("CORS_ALLOWED_ORIGINS", cast=Csv())]
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=Csv())
 
 TEMPLATES = [
     {
@@ -160,6 +160,6 @@ REST_AUTH = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'dj_rest_auth.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
