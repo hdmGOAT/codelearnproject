@@ -2,15 +2,27 @@ import { Field, Step } from "@/types/dynamicFormTypes";
 
 export const SignUpFields: Field[] = [
   {
-    name: "firstName",
-    label: "First Name",
-    type: "text",
-    placeholder: "Enter first name",
+    name: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "Enter chosen email",
   },
   {
-    name: "lastName",
-    label: "Last Name",
+    name: "username",
+    label: "Give a unique username",
     type: "text",
-    placeholder: "Enter last name",
+    placeholder: "Enter username",
+  },
+  {
+    name: "password1",
+    label: "Password",
+    type: "password",
+    placeholder: "Enter password",
+  },
+  {
+    name: "password2",
+    label: "Confirm Password",
+    type: "password",
+    placeholder: "Confirm password",
   },
 ];
