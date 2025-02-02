@@ -41,11 +41,12 @@ const fields: Field[] = [
     ],
   },
   {
-    name: "checkboxInput",
-    label: "Accept Terms",
+    name: "volume",
+    label: "Adjust Volume",
     type: "range",
-    defaultValue: false,
+    options: { min: 0, max: 100, step: 5 },
   },
+
   {
     name: "radioInput",
     label: "Choose a Plan",

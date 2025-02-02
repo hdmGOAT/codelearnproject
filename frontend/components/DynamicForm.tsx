@@ -36,6 +36,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
+import { Slider } from "./ui/slider";
 
 export interface Field {
   name: string;
@@ -48,7 +49,7 @@ export interface Field {
     | "tel"
     | "url"
     | "search"
-    | "textarea" //
+    | "textarea"
     | "select"
     | "checkbox"
     | "radio"
@@ -58,13 +59,24 @@ export interface Field {
     | "month" //
     | "week" //
     | "time" //
-    | "range" //
+    | "range"
     | "color" //
     | "switch"
     | "hidden";
   placeholder?: string;
-  options?: { label: string; value: string }[];
+  options?: SelectOptions[] | RangeOptions;
   defaultValue?: string | boolean;
+}
+
+interface SelectOptions {
+  label: string;
+  value: string;
+}
+
+interface RangeOptions {
+  min: number;
+  max: number;
+  step: number;
 }
 
 interface Step {
@@ -107,7 +119,7 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>{field.label}</SelectLabel>
-            {field.options?.map((op, index) => (
+            {(field.options as SelectOptions[])?.map((op, index) => (
               <SelectItem key={index} value={op.value}>
                 {op.label}
               </SelectItem>
@@ -124,7 +136,7 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
         onValueChange={formField.onChange}
         defaultValue={formField.value as string}
       >
-        {field.options?.map((op) => (
+        {(field.options as SelectOptions[])?.map((op) => (
           <div key={op.label} className="flex items-center space-x-2">
             <RadioGroupItem id={op.label} value={op.value} />
             <Label htmlFor={op.label}>{op.label}</Label>
@@ -173,6 +185,27 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
+  const renderRange = (field: Field, formField: any) => {
+    const { min, max, step } = (field.options as RangeOptions) || {
+      min: 0,
+      max: 100,
+      step: 1,
+    };
+
+    return (
+      <div className="flex flex-col items-center space-y-2">
+        <span className="text-sm font-medium">{formField.value ?? min}</span>
+
+        <Slider
+          value={[formField.value ?? min]}
+          min={min}
+          max={max}
+          step={step}
+          onValueChange={(value) => formField.onChange(value)}
+        />
+      </div>
+    );
+  };
   const renderField = (field: Field) => {
     return (
       <FormField
@@ -196,6 +229,8 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                 renderSwitch(field, formField)
               ) : field.type === "date" ? (
                 renderDate(field, formField)
+              ) : field.type === "range" ? (
+                renderRange(field, formField)
               ) : (
                 <Input
                   {...formField}
