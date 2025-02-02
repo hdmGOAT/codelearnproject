@@ -31,6 +31,7 @@ import {
 } from "./ui/select";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Label } from "./ui/label";
+import { Switch } from "./ui/switch";
 
 export interface Field {
   name: string;
@@ -43,18 +44,18 @@ export interface Field {
     | "tel"
     | "url"
     | "search"
-    | "textarea"
+    | "textarea" //
     | "select"
     | "checkbox"
     | "radio"
-    | "file"
-    | "date"
-    | "datetime-local"
-    | "month"
-    | "week"
-    | "time"
-    | "range"
-    | "color"
+    | "file" //
+    | "date" //
+    | "datetime-local" //
+    | "month" //
+    | "week" //
+    | "time" //
+    | "range" //
+    | "color" //
     | "switch"
     | "hidden";
   placeholder?: string;
@@ -126,6 +127,19 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
           </div>
         ))}
       </RadioGroup>
+    );
+  };
+
+  const renderSwitch = (field: Field, formField: any) => {
+    return (
+      <div className="">
+        <Switch
+          id={field.name}
+          checked={Boolean(formField.value)}
+          onCheckedChange={formField.onChange}
+        />
+        <Label htmlFor={field.name}>{field.label}</Label>
+      </div>
     );
   };
 
