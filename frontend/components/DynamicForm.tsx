@@ -143,6 +143,8 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
+  const renderDate = (field: Field, formField: any) => {};
+
   const renderField = (field: Field) => {
     return (
       <FormField
@@ -162,6 +164,8 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                 renderSelect(field, formField)
               ) : field.type === "radio" ? (
                 renderRadio(field, formField)
+              ) : field.type === "switch" ? (
+                renderSwitch(field, formField)
               ) : (
                 <Input
                   {...formField}
