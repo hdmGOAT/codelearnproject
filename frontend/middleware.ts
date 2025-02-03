@@ -13,11 +13,18 @@ export default async function middleware(request: NextRequest) {
 
   if (auth === undefined) {
     if (refresh !== undefined) {
-      const response = await middlewareRefresh(refresh.value);
-      if (response.ok) {
-        auth = request.cookies.get("jwt-auth");
+      const newAuth = await middlewareRefresh(refresh.value);
+      if (newAuth) {
+        const response = NextResponse.next();
+        response.cookies.set("jwt-auth", newAuth, {
+          httpOnly: true,
+          sameSite: "lax",
+          secure: true,
+          maxAge: 60 * 5,
+        });
+        return response;
       } else {
-        console.error("error refreshing token: ", response);
+        console.error("error refreshing token: ", newAuth);
         return NextResponse.redirect(new URL("/login", request.url));
       }
     } else {
@@ -28,7 +35,7 @@ export default async function middleware(request: NextRequest) {
 
   if (auth !== undefined) {
     const response = await middlewareVerify(auth.value);
-    if (!response.ok) {
+    if (!response) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
   }
@@ -37,5 +44,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/",
+  matcher: ["/dashboard/:path*", "/courses/:path*"],
 };

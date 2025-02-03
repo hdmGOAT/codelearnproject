@@ -99,7 +99,7 @@ export async function middlewareRefresh(refresh: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refresh }), // Send empty body
+      body: JSON.stringify({ refresh }),
     });
 
     if (!response.ok) {
@@ -123,8 +123,12 @@ export async function middlewareVerify(auth: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ auth }),
+      body: JSON.stringify({ token: auth }),
     });
+
+    if (!response.ok) {
+      throw new Error(`Failed to verify token: ${response.statusText}`);
+    }
 
     const data = await response.json();
 
