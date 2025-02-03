@@ -28,6 +28,9 @@ export default async function middleware(request: NextRequest) {
 
   if (auth !== undefined) {
     const response = await middlewareVerify(auth.value);
+    if (!response.ok) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 
   return NextResponse.next();
