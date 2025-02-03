@@ -92,25 +92,29 @@ export const refreshToken = async () => {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const middlewareRefresh = async () => {
-  console.log("🔄 Refreshing access token...");
+export async function middlewareRefresh() {
+  console.log("🔄 Refreshing access token in middleware...");
 
   try {
     const response = await fetch(`${API_BASE_URL}/auth/token/refresh/`, {
       method: "POST",
-      credentials: "include",
+      credentials: "include", // Ensures cookies are sent
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({}), // Send empty body
     });
 
-    if (!response.ok) throw new Error("Failed to refresh token");
+    if (!response.ok) {
+      throw new Error(`Failed to refresh token: ${response.statusText}`);
+    }
 
     const data = await response.json();
     console.log("✅ Token refreshed:", data.access);
     return data.access;
   } catch (error) {
-    console.error("❌ Failed to refresh token:", error);
+    console.error("❌ Middleware token refresh failed:", error);
     return null;
   }
-};
+}
+
