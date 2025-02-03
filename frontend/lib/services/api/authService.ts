@@ -1,7 +1,4 @@
-import { get } from "http";
 import apiClient from "./apiClient";
-import axios from "axios";
-
 
 export const userRegister = async (formData: {
   username: string;
@@ -67,7 +64,6 @@ export const verifyToken = async (token: string) => {
   }
 };
 
-
 export const refreshToken = async () => {
   console.log("🔄 Refreshing access token...");
 
@@ -94,3 +90,27 @@ export const refreshToken = async () => {
   }
 };
 
+const API_BASE_URL = process.env.NEXT_API_PUBLIC_URL;
+
+export const middlewareRefresh = async () => {
+  console.log("🔄 Refreshing access token...");
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/token/refresh/`, {
+      method: "POST",
+      credentials: "include", // Ensures HTTP-only cookie is sent
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) throw new Error("Failed to refresh token");
+
+    const data = await response.json();
+    console.log("✅ Token refreshed:", data.access);
+    return data.access;
+  } catch (error) {
+    console.error("❌ Failed to refresh token:", error);
+    return null;
+  }
+};
