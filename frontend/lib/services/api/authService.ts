@@ -70,9 +70,9 @@ export const refreshToken = async () => {
   try {
     const response = await apiClient.post(
       "/auth/token/refresh/",
-      {}, // Empty body (Django reads refresh token from cookie)
+      {},
       {
-        withCredentials: true, // ✅ Ensures HTTP-only cookie is sent
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
@@ -98,7 +98,7 @@ export const middlewareRefresh = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/auth/token/refresh/`, {
       method: "POST",
-      credentials: "include", // Ensures HTTP-only cookie is sent
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
