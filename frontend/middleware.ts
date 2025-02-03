@@ -5,6 +5,8 @@ export default function middleware(request: NextRequest) {
     const auth = request.cookies.get("jwt-auth");
     const refresh = request.cookies.get("jwt-refresh");
 
+    console.log("auth: ", auth, "\nrefresh: ", refresh);
+
     return NextResponse.redirect(new URL("/login", request.url));
 }
 
