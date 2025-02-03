@@ -18,7 +18,7 @@ export const userRegister = async (formData: {
     return response.data;
   } catch (error: any) {
     console.error(
-      "❌ Registration failed:",
+      "Registration failed:",
       error.response?.data?.message || error
     );
 
@@ -37,7 +37,7 @@ export const userLogin = async (data: any) => {
 
 export const verifyToken = async (token: string) => {
   if (!token) {
-    console.error("❌ No token provided for verification.");
+    console.error("No token provided for verification.");
     return null;
   }
 
@@ -56,10 +56,7 @@ export const verifyToken = async (token: string) => {
     console.log("✅ Token verification successful:", response.data);
     return response.data;
   } catch (error: any) {
-    console.error(
-      "❌ Token verification failed:",
-      error.response?.data || error
-    );
+    console.error("Token verification failed:", error.response?.data || error);
     return null;
   }
 };
@@ -83,7 +80,7 @@ export const refreshToken = async () => {
     return response.data.access;
   } catch (error) {
     console.error(
-      "❌ Failed to refresh token:",
+      "Failed to refresh token:",
       (error as any).response?.data || (error as any).message
     );
     return null;
@@ -93,7 +90,7 @@ export const refreshToken = async () => {
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function middlewareRefresh(refresh: string) {
-  console.log("🔄 Refreshing access token in middleware...");
+  console.log("Refreshing access token in middleware...");
 
   try {
     const response = await fetch(`${API_BASE_URL}/auth/token/refresh/`, {
@@ -110,10 +107,31 @@ export async function middlewareRefresh(refresh: string) {
     }
 
     const data = await response.json();
-    console.log("✅ Token refreshed:", data.access);
+    console.log("Token refreshed:", data.access);
     return data.access;
   } catch (error) {
-    console.error("❌ Middleware token refresh failed:", error);
+    console.error("Middleware token refresh failed:", error);
+    return null;
+  }
+}
+
+export async function middlewareVerify(auth: string) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/token/verify/`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ auth }),
+    });
+
+    const data = await response.json();
+
+    console.log("Token verification successful:", data);
+    return data;
+  } catch (error: any) {
+    console.error("Token verification failed:", error.response?.data || error);
     return null;
   }
 }
