@@ -8,8 +8,6 @@ import { createSignedToken, verifySignedToken } from "./lib/utils/TokenUtils";
 
 //These are where login will be required
 
-const protectedRoutes = ["/dashboard/:path*", "/courses/:path*"];
-
 export default async function middleware(request: NextRequest) {
   let auth = request.cookies.get("jwt-auth");
   const refresh = request.cookies.get("jwt-refresh");
@@ -59,10 +57,9 @@ export default async function middleware(request: NextRequest) {
       maxAge: 60 * 5,
     }
   );
-
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
-  matcher: protectedRoutes,
+  matcher: ["/dashboard/:path*", "/courses/:path*"],
 };
