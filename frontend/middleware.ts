@@ -4,22 +4,22 @@ import {
   middlewareRefresh,
   middlewareVerify,
 } from "./lib/services/api/authService";
+import { createSignedToken, verifySignedToken } from "./lib/utils/TokenUtils";
 
 //These are where login will be required
 
 const protectedRoutes = ["/dashboard/:path*", "/courses/:path*"];
-
 
 export default async function middleware(request: NextRequest) {
   let auth = request.cookies.get("jwt-auth");
   const refresh = request.cookies.get("jwt-refresh");
   const verified = request.cookies.get("jwt-verified");
 
-  if (verified) {
+  console.log("auth: ", auth, "\nrefresh: ", refresh, "\nverified: ", verified);
+
+  if (verified && (await verifySignedToken(verified.value))) {
     return NextResponse.next();
   }
-
-  console.log("auth: ", auth, "\nrefresh: ", refresh);
 
   if (auth === undefined) {
     if (refresh !== undefined) {
@@ -49,12 +49,16 @@ export default async function middleware(request: NextRequest) {
   }
 
   const response = NextResponse.next();
-    response.cookies.set("jwt-verified", "true", {
-        httpOnly: true,
-        sameSite: "lax",
-        secure: true,
-        maxAge: 60 * 5,
-    });
+  response.cookies.set(
+    "jwt-verified",
+    await createSignedToken({ timestamp: Date.now() }),
+    {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: true,
+      maxAge: 60 * 5,
+    }
+  );
 
   return NextResponse.next();
 }

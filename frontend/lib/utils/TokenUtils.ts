@@ -23,7 +23,7 @@ export async function createSignedToken(data: any) {
   return Buffer.from(`${payload}.${signature}`).toString("base64");
 }
 
-async function verifySignedToken(token: string) {
+export async function verifySignedToken(token: string) {
   try {
     const decoder = new TextDecoder();
     const secret = process.env.NEXT_SECRET_KEY;
