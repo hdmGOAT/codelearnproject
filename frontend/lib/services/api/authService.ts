@@ -92,7 +92,7 @@ export const refreshToken = async () => {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function middlewareRefresh() {
+export async function middlewareRefresh(refresh: string) {
   console.log("🔄 Refreshing access token in middleware...");
 
   try {
@@ -102,7 +102,7 @@ export async function middlewareRefresh() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}), // Send empty body
+      body: JSON.stringify({ refresh }), // Send empty body
     });
 
     if (!response.ok) {
