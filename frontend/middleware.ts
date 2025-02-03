@@ -5,9 +5,19 @@ import {
   middlewareVerify,
 } from "./lib/services/api/authService";
 
+//These are where login will be required
+
+const protectedRoutes = ["/dashboard/:path*", "/courses/:path*"];
+
+
 export default async function middleware(request: NextRequest) {
   let auth = request.cookies.get("jwt-auth");
   const refresh = request.cookies.get("jwt-refresh");
+  const verified = request.cookies.get("jwt-verified");
+
+  if (verified) {
+    return NextResponse.next();
+  }
 
   console.log("auth: ", auth, "\nrefresh: ", refresh);
 
@@ -33,16 +43,22 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  if (auth !== undefined) {
-    const response = await middlewareVerify(auth.value);
-    if (!response) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
+  const isValid = await middlewareVerify(auth.value);
+  if (!isValid) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
+
+  const response = NextResponse.next();
+    response.cookies.set("jwt-verified", "true", {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: true,
+        maxAge: 60 * 5,
+    });
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/courses/:path*"],
+  matcher: protectedRoutes,
 };
