@@ -90,7 +90,7 @@ export const refreshToken = async () => {
   }
 };
 
-const API_BASE_URL = process.env.NEXT_API_PUBLIC_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const middlewareRefresh = async () => {
   console.log("🔄 Refreshing access token...");
