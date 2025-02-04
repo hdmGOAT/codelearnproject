@@ -29,16 +29,6 @@ const RichTextEditor = () => {
         <Button onClick={() => editor?.chain().focus().toggleStrike().run()}>
           Strike
         </Button>
-        <Button
-          onClick={() => editor?.chain().focus().toggleBulletList().run()}
-        >
-          Bullet List
-        </Button>
-        <Button
-          onClick={() => editor?.chain().focus().toggleOrderedList().run()}
-        >
-          Ordered List
-        </Button>
       </div>
       <EditorContent className=" size-full" editor={editor} />
     </div>
