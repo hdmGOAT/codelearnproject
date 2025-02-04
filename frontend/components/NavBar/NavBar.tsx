@@ -22,7 +22,7 @@ const NavBar = () => {
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-6">
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Home</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
               <NavigationMenuContent className="bg-background shadow-md rounded-md">
                 <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
                   Dashboard
@@ -30,10 +30,26 @@ const NavBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>About</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Teach</NavigationMenuTrigger>
+              <NavigationMenuContent className="bg-background shadow-md rounded-md">
+                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
+                  Create Course
+                </NavigationMenuLink>
+              </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
+              <NavigationMenuTrigger>My Account</NavigationMenuTrigger>
+              <NavigationMenuContent className="bg-background shadow-md rounded-md">
+                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
+                  Profile
+                </NavigationMenuLink>
+                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
+                  Settings
+                </NavigationMenuLink>
+                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
+                  Logout
+                </NavigationMenuLink>
+              </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

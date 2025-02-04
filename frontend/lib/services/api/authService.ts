@@ -34,6 +34,25 @@ export const userLogin = async (data: any) => {
   }
 };
 
+
+export const userLogout = async () => {
+  try {
+    const response = await apiClient.post("/auth/logout/", null, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error logging out: ", error);
+  }
+};
+
+
+// TOKEN FUNCTIONS
+
 export const verifyToken = async (token: string) => {
   if (!token) {
     console.error("No token provided for verification.");
@@ -83,6 +102,12 @@ export const refreshToken = async () => {
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+
+
+
+
+// MIDDLWARE FUNCTIONS
 
 export async function middlewareRefresh(refresh: string) {
   try {
