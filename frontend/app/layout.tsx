@@ -23,14 +23,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const noNavBar = ["/", "/login", "/signup"];
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NavBarRenderer />
+        <div className="w-screen">
+          <NavBarRenderer />
+        </div>
 
         {children}
       </body>
