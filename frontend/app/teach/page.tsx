@@ -7,9 +7,12 @@ const TeachPage = () => {
       <div className="flex m-3 p-2 border-2 rounded-xl flex-col space-y-2">
         <h1 className="text-2xl font-semibold">My Courses</h1>
         <div className="flex flex-row gap-x-4">
-          <button className="bg-primary text-white p-2 rounded-xl ">
+          <a
+            href="#"
+            className="bg-primary text-white p-2 rounded-xl  flex  items-center"
+          >
             Create Course
-          </button>
+          </a>
           <CourseList />
         </div>
       </div>
