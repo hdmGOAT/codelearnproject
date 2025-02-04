@@ -8,7 +8,7 @@ const TeachPage = () => {
         <h1 className="text-2xl font-semibold">My Courses</h1>
         <div className="flex flex-row gap-x-4">
           <a
-            href="#"
+            href="/teach/create"
             className="bg-primary text-white p-2 rounded-xl  flex  items-center"
           >
             Create Course

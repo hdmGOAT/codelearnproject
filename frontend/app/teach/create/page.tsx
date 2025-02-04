@@ -1,7 +1,7 @@
 import React from "react";
 
 const CreatePage = () => {
-  return <div>CreatePage</div>;
+  return <div className="flex h-screen p-2 m-3 border-2 rounded-xl"></div>;
 };
 
 export default CreatePage;
