@@ -16,4 +16,6 @@ const RichTextEditor = () => {
   );
 };
 
+//NEEDS TOOLBAR
+
 export default RichTextEditor;
