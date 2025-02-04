@@ -22,35 +22,85 @@ const NavBar = () => {
         <div className="flex w-full">
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
+              <NavigationMenuItem className="relative">
                 <NavigationMenuTrigger className="text-foreground">
                   Learn
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="min-w-[200px]">
-                  <ul className="grid grid-cols-1">
-                    <li className="w-full">
+                <NavigationMenuContent className="min-w-[200px] bg-gray-800 rounded-md shadow-lg p-2">
+                  <ul className="flex flex-col space-y-2">
+                    <li>
                       <NavigationMenuLink
                         href="/learn"
-                        className="block p-2 hover:bg-gray-800"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
                       >
                         <h1 className="font-bold">Recommended</h1>
-                        <p className="text-xs">The best courses for you</p>
+                        <p className="text-xs text-gray-300">
+                          The best courses for you
+                        </p>
                       </NavigationMenuLink>
+                    </li>
+                    <li>
                       <NavigationMenuLink
                         href="/learn"
-                        className="block p-2 hover:bg-gray-800"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
                       >
                         <h1 className="font-bold">Explore</h1>
-                        <p className="text-xs">
+                        <p className="text-xs text-gray-300">
                           Dive into new waters of knowledge
                         </p>
                       </NavigationMenuLink>
+                    </li>
+                    <li>
                       <NavigationMenuLink
                         href="/learn"
-                        className="block p-2 hover:bg-gray-800"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
                       >
                         <h1 className="font-bold">Following</h1>
-                        <p className="text-xs">Courses by those you follow</p>
+                        <p className="text-xs text-gray-300">
+                          Courses by those you follow
+                        </p>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem className="relative">
+                <NavigationMenuTrigger className="text-foreground">
+                  Learn
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="min-w-[200px] bg-gray-800 rounded-md shadow-lg p-2">
+                  <ul className="flex flex-col space-y-2">
+                    <li>
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
+                      >
+                        <h1 className="font-bold">Recommended</h1>
+                        <p className="text-xs text-gray-300">
+                          The best courses for you
+                        </p>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
+                      >
+                        <h1 className="font-bold">Explore</h1>
+                        <p className="text-xs text-gray-300">
+                          Dive into new waters of knowledge
+                        </p>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block px-4 py-3 hover:bg-gray-700 rounded-md transition"
+                      >
+                        <h1 className="font-bold">Following</h1>
+                        <p className="text-xs text-gray-300">
+                          Courses by those you follow
+                        </p>
                       </NavigationMenuLink>
                     </li>
                   </ul>
