@@ -15,24 +15,50 @@ const NavBar = () => {
   return (
     <nav className="bg-gray-900 text-white shadow-md">
       <div className="mx-auto flex justify-between items-center py-3 px-6">
-        <Link href="/" className="text-lg font-bold tracking-wide">
+        <Link href="/" className="text-lg font-bold tracking-wide w-full">
           Open Code Learning
         </Link>
 
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid grid-cols-2 gap-4 w-full">
-                  <li>
-                    <NavigationMenuLink href="/learn">Learn</NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="flex w-full">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-foreground">
+                  Learn
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="min-w-[200px]">
+                  <ul className="grid grid-cols-1">
+                    <li className="w-full">
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block p-2 hover:bg-gray-800"
+                      >
+                        <h1 className="font-bold">Recommended</h1>
+                        <p className="text-xs">The best courses for you</p>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block p-2 hover:bg-gray-800"
+                      >
+                        <h1 className="font-bold">Explore</h1>
+                        <p className="text-xs">
+                          Dive into new waters of knowledge
+                        </p>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink
+                        href="/learn"
+                        className="block p-2 hover:bg-gray-800"
+                      >
+                        <h1 className="font-bold">Following</h1>
+                        <p className="text-xs">Courses by those you follow</p>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
       </div>
     </nav>
   );

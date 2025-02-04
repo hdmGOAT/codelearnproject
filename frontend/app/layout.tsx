@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="w-screen">
+        <div className="w-full">
           <NavBarRenderer />
         </div>
 
