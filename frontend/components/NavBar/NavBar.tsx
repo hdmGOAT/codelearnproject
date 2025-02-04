@@ -21,25 +21,25 @@ const NavBar = () => {
 
         <NavigationMenu>
           <NavigationMenuList className="flex space-x-6">
-            <NavigationMenuItem>
+            <NavigationMenuItem className="relative">
               <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-background shadow-md rounded-md">
+              <NavigationMenuContent className="absolute left-0 top-full bg-background shadow-md rounded-md">
                 <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
                   Dashboard
                 </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            <NavigationMenuItem className="relative">
               <NavigationMenuTrigger>Teach</NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-background shadow-md rounded-md">
+              <NavigationMenuContent className="absolute left-0 top-full bg-background shadow-md rounded-md">
                 <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
                   Create Course
                 </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            <NavigationMenuItem className="relative">
               <NavigationMenuTrigger>My Account</NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-background shadow-md rounded-md">
+              <NavigationMenuContent className="absolute left-0 top-full bg-background shadow-md rounded-md">
                 <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-100">
                   Profile
                 </NavigationMenuLink>
