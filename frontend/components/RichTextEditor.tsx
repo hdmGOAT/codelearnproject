@@ -3,6 +3,7 @@
 import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { Button } from "./ui/button";
 
 const RichTextEditor = () => {
   const editor = useEditor({
@@ -18,7 +19,14 @@ const RichTextEditor = () => {
 
   return (
     <div className="editor w-full h-screen">
-      <div className="toolbar  w-full">Toolbar</div>
+      <div className="toolbar  w-full">
+        <Button onClick={() => editor?.chain().focus().toggleBold().run()}>
+          Bold
+        </Button>
+        <Button onClick={() => editor?.chain().focus().toggleItalic().run()}>
+          Italic
+        </Button>
+      </div>
       <EditorContent className=" size-full" editor={editor} />
     </div>
   );
