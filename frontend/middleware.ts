@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 import {
   middlewareRefresh,
   middlewareVerify,
@@ -13,9 +13,14 @@ export default async function middleware(request: NextRequest) {
   const refresh = request.cookies.get("jwt-refresh");
   const verified = request.cookies.get("jwt-verified");
 
-  console.log("auth: ", auth, "\nrefresh: ", refresh, "\nverified: ", verified);
-
   if (verified && (await verifySignedToken(verified.value))) {
+    if (
+      request.nextUrl.pathname === "/login" ||
+      request.nextUrl.pathname === "/signup"
+    ) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+
     return NextResponse.next();
   }
 
@@ -61,5 +66,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/courses/:path*"],
+  matcher: ["/dashboard/:path*", "/courses/:path*", "/login", "/signup"],
 };
