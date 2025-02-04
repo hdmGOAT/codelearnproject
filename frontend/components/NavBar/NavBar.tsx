@@ -8,6 +8,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuLink,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 const NavBar = () => {
@@ -17,49 +18,6 @@ const NavBar = () => {
         <Link href="/" className="text-lg font-bold tracking-wide">
           Open Code Learning
         </Link>
-
-        <NavigationMenu>
-          <NavigationMenuList className="flex space-x-6">
-            <NavigationMenuItem className="group relative">
-              <NavigationMenuTrigger className="px-4 py-2 hover:bg-gray-700 rounded-md">
-                Learn
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute left-0 top-full bg-white text-black shadow-md rounded-md w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-200">
-                  Dashboard
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="group relative">
-              <NavigationMenuTrigger className="px-4 py-2 hover:bg-gray-700 rounded-md">
-                Teach
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute left-0 top-full bg-white text-black shadow-md rounded-md w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-200">
-                  Create Course
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="group relative">
-              <NavigationMenuTrigger className="px-4 py-2 hover:bg-gray-700 rounded-md">
-                My Account
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="absolute left-0 top-full bg-white text-black shadow-md rounded-md w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-200">
-                  Profile
-                </NavigationMenuLink>
-                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-200">
-                  Settings
-                </NavigationMenuLink>
-                <NavigationMenuLink className="block px-4 py-2 hover:bg-gray-200">
-                  Logout
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
       </div>
     </nav>
   );
