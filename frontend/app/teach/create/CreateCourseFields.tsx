@@ -1,19 +1,14 @@
-import { Step } from "@/types/dynamicFormTypes";
+import { Field, Step } from "@/types/dynamicFormTypes";
 
-export const CreateCourseFields: Step[] = [
+export const CreateCourseFields: Field[] = [
   {
-    title: "Create Course",
-    fields: [
-      {
-        name: "title",
-        label: "Course Title",
-        type: "text",
-      },
-      {
-        name: "description",
-        label: "Course Description",
-        type: "rich-text",
-      },
-    ],
+    name: "title",
+    label: "Course Title",
+    type: "text",
+  },
+  {
+    name: "description",
+    label: "Course Description",
+    type: "rich-text",
   },
 ];

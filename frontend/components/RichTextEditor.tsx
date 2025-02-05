@@ -43,7 +43,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
 
   return (
     <div className="rich-editor">
-      <div className=" hidden toolbar flex gap-2 p-2 border-b bg-gray-100 w-full overflow-x-auto">
+      <div className="  toolbar flex gap-2 p-2 border-b bg-gray-100 w-full overflow-x-auto">
         {/* Text Formatting */}
         <Button onClick={() => editor?.chain().focus().toggleBold().run()}>
           Bold
