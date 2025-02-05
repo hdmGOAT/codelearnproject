@@ -43,6 +43,7 @@ import {
   RangeOptions,
   SelectOptions,
 } from "@/types/dynamicFormTypes";
+import RichTextEditor from "./RichTextEditor";
 
 interface DynamicFormProps {
   fields: Field[] | Step[]; // Supports both single & multi-step forms
@@ -90,6 +91,16 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
     );
   };
 
+  const renderRichText = (field: Field, formField: any) => {
+    return (
+      <div>
+        <RichTextEditor
+          value={formField.value}
+          onChange={(val: any) => formField.onChange(val)}
+        />
+      </div>
+    );
+  };
   const renderRadio = (field: Field, formField: any) => {
     return (
       <RadioGroup

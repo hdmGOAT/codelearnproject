@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Button } from "./ui/button";
@@ -9,7 +9,12 @@ import { all, createLowlight } from "lowlight";
 
 const lowlight = createLowlight(all);
 
-const RichTextEditor = () => {
+interface RichTextEditorProps {
+  value: string;
+  onChange: (content: string) => void;
+}
+
+const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -19,10 +24,7 @@ const RichTextEditor = () => {
         lowlight,
       }),
     ],
-    content: `
-    <p> cool </p>
-
-    `,
+    content: value,
     immediatelyRender: false,
     editorProps: {
       attributes: {
@@ -30,6 +32,14 @@ const RichTextEditor = () => {
       },
     },
   });
+
+  useEffect(() => {
+    if (editor) {
+      editor.on("update", () => {
+        onChange(editor.getHTML());
+      });
+    }
+  }, [editor, onChange]);
 
   return (
     <div className="rich-editor w-full h-screen">

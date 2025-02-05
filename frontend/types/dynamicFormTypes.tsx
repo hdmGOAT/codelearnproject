@@ -21,6 +21,7 @@ export interface Field {
     | "time" //
     | "range"
     | "color" //
+    | "rich-text"
     | "switch"
     | "hidden";
   placeholder?: string;
