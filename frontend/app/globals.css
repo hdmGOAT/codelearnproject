@@ -71,11 +71,11 @@ body {
   }
 }
 
-pre {
+.rich-editor pre {
   @apply bg-gray-900 text-gray-200 p-4 rounded-lg overflow-x-auto;
 }
 
-code {
+.rich-editor code {
   @apply font-mono text-sm;
 }
 
