@@ -93,7 +93,7 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
 
   const renderRichText = (field: Field, formField: any) => {
     return (
-      <div>
+      <div className="  max-w-screen min-h-64">
         <RichTextEditor
           value={formField.value}
           onChange={(val: any) => formField.onChange(val)}

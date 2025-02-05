@@ -1,3 +1,5 @@
+"use client";
+
 import DynamicForm from "@/components/DynamicForm";
 import React from "react";
 import { CreateCourseFields } from "./CreateCourseFields";

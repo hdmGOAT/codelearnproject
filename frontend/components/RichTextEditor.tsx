@@ -42,8 +42,8 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange }) => {
   }, [editor, onChange]);
 
   return (
-    <div className="rich-editor w-full h-screen">
-      <div className="toolbar w-full flex gap-2 p-2 border-b bg-gray-100 overflow-scroll">
+    <div className="rich-editor">
+      <div className="toolbar  flex gap-2 p-2 border-b bg-gray-100 overflow-scroll">
         {/* Text Formatting */}
         <Button onClick={() => editor?.chain().focus().toggleBold().run()}>
           Bold
