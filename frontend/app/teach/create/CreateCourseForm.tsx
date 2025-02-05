@@ -17,11 +17,13 @@ const CreateCourseSchema = z.object({
 
 const CreateCourseForm = () => {
   return (
-    <DynamicForm
-      fields={CreateCourseFields}
-      schema={CreateCourseSchema}
-      onSubmit={handleSubmit}
-    />
+    <div className="flex min-h-screen w-full">
+      <DynamicForm
+        fields={CreateCourseFields}
+        schema={CreateCourseSchema}
+        onSubmit={handleSubmit}
+      />
+    </div>
   );
 };
 
