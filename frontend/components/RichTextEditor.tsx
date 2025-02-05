@@ -4,10 +4,21 @@ import React from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Button } from "./ui/button";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+
+const lowlight = createLowlight(all);
 
 const RichTextEditor = () => {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit.configure({
+        codeBlock: false,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+    ],
     content: `<p>Hello World! </p>`,
     immediatelyRender: false,
     editorProps: {
@@ -28,6 +39,9 @@ const RichTextEditor = () => {
         </Button>
         <Button onClick={() => editor?.chain().focus().toggleStrike().run()}>
           Strike
+        </Button>
+        <Button onClick={() => editor?.chain().focus().toggleCodeBlock().run()}>
+          Code Block
         </Button>
       </div>
       <EditorContent className=" size-full" editor={editor} />
