@@ -202,6 +202,8 @@ const DynamicForm = ({ schema, fields, onSubmit }: DynamicFormProps) => {
                 renderDate(field, formField)
               ) : field.type === "range" ? (
                 renderRange(field, formField)
+              ) : field.type === "rich-text" ? (
+                renderRichText(field, formField)
               ) : (
                 <Input
                   {...formField}
