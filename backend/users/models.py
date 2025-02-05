@@ -1,5 +1,4 @@
 from django.db import models
-from courses.models import Course
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 # Create your models here.
@@ -35,8 +34,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     organization = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    
 
-    courses_enrolled = models.ManyToManyField(Course, related_name="students", blank=True)
+    courses_enrolled = models.ManyToManyField('courses.Course', related_name="students", blank=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)  # Required for admin panel access
@@ -48,3 +49,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
