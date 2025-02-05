@@ -19,7 +19,12 @@ const RichTextEditor = () => {
         lowlight,
       }),
     ],
-    content: `<p>Hello World! </p>`,
+    content: `
+    \`\`\`python
+print("Hello, world!")
+\`\`\`
+
+    `,
     immediatelyRender: false,
     editorProps: {
       attributes: {
