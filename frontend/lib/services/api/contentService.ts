@@ -97,5 +97,12 @@ export const getOneCourseModule = async (
   }
 };
 
+export const createCourseModule = async (courseId: string) => {
+  try {
+  } catch (err) {
+    console.error("error creating course module: ", err);
+  }
+};
+
 
 // CONTENT
