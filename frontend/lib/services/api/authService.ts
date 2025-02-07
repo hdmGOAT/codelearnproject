@@ -58,11 +58,17 @@ export const getUser = async () => {
         "Content-Type": "application/json",
       },
     });
+
     return response.data;
   } catch (error) {
-    console.error("Error getting user: ", error);
+    console.error(
+      "Error getting user:",
+      (error as any).response?.data || (error as any).message
+    );
+    return null;
   }
 };
+
 
 
 // TOKEN FUNCTIONS
