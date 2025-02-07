@@ -11,4 +11,9 @@ export const CreateCourseFields: Field[] = [
     label: "Course Description",
     type: "rich-text",
   },
+  {
+    name: "thumbnail",
+    label: "Course Thumbnail",
+    type: "file",
+  },
 ];
