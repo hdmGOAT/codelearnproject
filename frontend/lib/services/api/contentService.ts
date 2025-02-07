@@ -29,14 +29,7 @@ export const deleteTag = async (tag: string) => {
   }
 };
 
-export const updateTag = async (tag: string, newTag: string) => {
-  try {
-    const response = await apiClient.put(`/tags/${tag}`, { tag: newTag });
-    return response.data;
-  } catch (error) {
-    console.error("Error updating tag: ", error);
-  }
-};
+
 
 // COURSES
 
@@ -73,15 +66,6 @@ export const deleteCourse = async (id: string) => {
     return response.data;
   } catch (error) {
     console.error("Error deleting course: ", error);
-  }
-};
-
-export const updateCourse = async (id: string, course: any) => {
-  try {
-    const response = await apiClient.put(`/courses/${id}`, course);
-    return response.data;
-  } catch (error) {
-    console.error("Error updating course: ", error);
   }
 };
 
