@@ -97,12 +97,15 @@ export const getOneCourseModule = async (
   }
 };
 
-export const createCourseModule = async (courseId: string) => {
+export const createCourseModule = async (courseId: string, data: Module) => {
   try {
+    const response = await apiClient.post(`/courses/${courseId}/modules/`, {
+      ...data,
+      course: courseId,
+    });
   } catch (err) {
     console.error("error creating course module: ", err);
   }
 };
-
 
 // CONTENT
