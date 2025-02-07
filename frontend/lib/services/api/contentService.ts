@@ -40,6 +40,53 @@ export const updateTag = async (tag: string, newTag: string) => {
 
 // COURSES
 
+export const getCourses = async () => {
+  try {
+    const response = await apiClient.get("/courses");
+    return response.data;
+  } catch (error) {
+    console.error("Error getting courses: ", error);
+  }
+};
+
+export const getCourse = async (id: string) => {
+  try {
+    const response = await apiClient.get(`/courses/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error getting course: ", error);
+  }
+};
+
+export const addCourse = async (course: any) => {
+  try {
+    const response = await apiClient.post("/courses", course);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding course: ", error);
+  }
+};
+
+export const deleteCourse = async (id: string) => {
+  try {
+    const response = await apiClient.delete(`/courses/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting course: ", error);
+  }
+};
+
+export const updateCourse = async (id: string, course: any) => {
+  try {
+    const response = await apiClient.put(`/courses/${id}`, course);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating course: ", error);
+  }
+};
+
+
+
 // MODULES
 
 // CONTENT
