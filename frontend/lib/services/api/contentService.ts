@@ -1,5 +1,5 @@
 import apiClient from "./apiClient";
-
+import jwt from "jsonwebtoken";
 // TAGS
 
 export const getTags = async () => {
@@ -29,8 +29,6 @@ export const deleteTag = async (tag: string) => {
   }
 };
 
-
-
 // COURSES
 
 export const getCourses = async () => {
@@ -51,12 +49,12 @@ export const getCourse = async (id: string) => {
   }
 };
 
-export const addCourse = async (course: any) => {
+export const createCourse = async (data: any) => {
   try {
-    const response = await apiClient.post("/courses", course);
+    const response = await apiClient.post("/courses", data);
     return response.data;
   } catch (error) {
-    console.error("Error adding course: ", error);
+    console.error("Error creating course: ", error);
   }
 };
 
