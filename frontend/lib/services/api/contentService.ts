@@ -109,3 +109,45 @@ export const createCourseModule = async (courseId: string, data: Module) => {
 };
 
 // CONTENT
+
+export const getModuleContent = async (courseId: string, moduleId: string) => {
+  try {
+    const response = await apiClient.get(
+      `/courses/${courseId}/modules/${moduleId}/content`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error getting module content: ", error);
+  }
+};
+
+export const getOneContent = async (
+  courseId: string,
+  moduleId: string,
+  contentId: string
+) => {
+  try {
+    const response = await apiClient.get(
+      `/courses/${courseId}/modules/${moduleId}/content/${contentId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error getting content: ", error);
+  }
+};
+
+export const addContent = async (
+  courseId: string,
+  moduleId: string,
+  data: any
+) => {
+  try {
+    const response = await apiClient.post(
+      `/courses/${courseId}/modules/${moduleId}/content`,
+      { ...data, module: moduleId }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding content: ", error);
+  }
+};
