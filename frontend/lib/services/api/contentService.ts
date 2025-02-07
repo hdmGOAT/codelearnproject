@@ -73,5 +73,29 @@ export const deleteCourse = async (id: string) => {
 
 // MODULES
 
+export const getCourseModules = async (courseId: string) => {
+  try {
+    const response = await apiClient.get(`/courses/${courseId}/modules/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error getting course modules: ", error);
+  }
+};
+
+export const getOneCourseModule = async (
+  courseId: string,
+  moduleId: string
+) => {
+  try {
+    const response = await apiClient.get(
+      `/courses/${courseId}/modules/${moduleId}`
+    );
+
+    return response.data;
+  } catch (err) {
+    console.error("Error fetching module: ", err);
+  }
+};
+
 
 // CONTENT
