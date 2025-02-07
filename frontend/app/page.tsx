@@ -1,17 +1,5 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { getUser } from "@/lib/services/api/authService";
-
-const whoAmI = async () => {
-  const response = await getUser();
-  console.log(response);
-};
+import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div>
-      <Button onClick={whoAmI}>Who are u</Button>
-    </div>
-  );
+  return <div>Home</div>;
 }

@@ -50,28 +50,9 @@ export const userLogout = async () => {
   }
 };
 
-export const getUser = async () => {
-  try {
-    const response = await apiClient.get("/auth/user/", {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error(
-      "Error getting user:",
-      (error as any).response?.data || (error as any).message
-    );
-    return null;
-  }
-};
 
 
-
-// TOKEN FUNCTIONS
+// TOKEN FUNCTIONS.
 
 export const verifyToken = async (token: string) => {
   if (!token) {
