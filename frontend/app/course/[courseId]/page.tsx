@@ -6,7 +6,7 @@ export default function CoursePage({
   return (
     <div>
       <h1>Course: {params.courseId}</h1>
-      <p>Select a topic to continue.</p>
+      <p>Select a topic to contaainue.</p>
       {/* Example navigation */}
       <ul>
         <li>
